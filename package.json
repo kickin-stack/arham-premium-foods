@@ -1,0 +1,12 @@
+{
+  "name": "arham-premium-foods",
+  "version": "1.0.0",
+  "description": "Full-stack ecommerce starter for Arham Premium Foods",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
