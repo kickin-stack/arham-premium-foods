@@ -3,310 +3,351 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arham Premium Foods | Organic Grocery Store</title>
+  <title>Arham Premium Foods | Organic E-commerce Starter</title>
   <style>
     :root {
-      --green-900: #1b5e20;
-      --green-700: #2e7d32;
-      --green-100: #e8f5e9;
-      --amber-500: #ffb300;
-      --text-dark: #1f2937;
-      --text-light: #f9fafb;
-      --bg: #f7faf7;
-      --card: #ffffff;
-      --muted: #6b7280;
-      --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      --radius: 14px;
+      --green: #2f6b3c;
+      --green-dark: #1f4d2b;
+      --beige: #f5efe1;
+      --white: #ffffff;
+      --text: #223027;
+      --muted: #5e6d60;
+      --line: #e6dfcf;
+      --shadow: 0 8px 20px rgba(31, 77, 43, 0.12);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text-dark);
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: var(--beige);
     }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: 0 auto;
-    }
+    .container { width: min(1150px, 94%); margin: 0 auto; }
 
     header {
-      background: linear-gradient(130deg, var(--green-900), var(--green-700));
-      color: var(--text-light);
-      padding: 16px 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: var(--shadow);
     }
-
-    .nav {
+    .topbar {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
       gap: 12px;
+      padding: 14px 0;
     }
-
-    .brand {
-      font-size: 1.3rem;
+    .brand { font-weight: 800; color: var(--green-dark); font-size: 1.25rem; }
+    .top-actions { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
       font-weight: 700;
+      cursor: pointer;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-    }
-
-    .cart-pill {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-weight: 700;
-    }
+    .btn-green { background: var(--green); color: var(--white); }
+    .btn-light { background: #eef4ef; color: var(--green-dark); }
 
     .hero {
-      padding: 56px 0 36px;
-      text-align: center;
+      background: linear-gradient(180deg, #fff, #f7f3e8);
+      border-radius: 16px;
+      margin: 18px 0;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+    .hero h1 { margin: 0 0 10px; color: var(--green-dark); font-size: clamp(1.6rem, 4vw, 2.4rem); }
+    .hero p { margin: 0; color: var(--muted); max-width: 700px; line-height: 1.55; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 18px;
+      align-items: start;
     }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      margin-bottom: 10px;
-      color: var(--green-900);
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
     }
-
-    .hero p {
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto 24px;
-      line-height: 1.5;
-    }
-
-    .cta {
-      display: inline-block;
-      background: var(--amber-500);
-      color: #111827;
-      text-decoration: none;
-      font-weight: 700;
-      padding: 12px 22px;
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--green-dark);
       border-radius: 999px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-weight: 600;
     }
-
-    .section-title {
-      margin: 8px 0 18px;
-      font-size: 1.4rem;
-      color: var(--green-900);
-    }
+    .chip.active { background: var(--green); color: #fff; border-color: var(--green); }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      padding-bottom: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
     }
-
-    .product {
-      background: var(--card);
-      border-radius: var(--radius);
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
       box-shadow: var(--shadow);
-      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #e7efe7;
+    }
+    .card-body { padding: 12px; }
+    .card h3 { margin: 0 0 6px; font-size: 1rem; }
+    .meta { color: var(--muted); font-size: .88rem; margin-bottom: 8px; }
+    .price { color: var(--green-dark); font-weight: 800; margin-bottom: 10px; }
+
+    .cart {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      position: sticky;
+      top: 78px;
+    }
+    .cart h2 { margin: 0 0 10px; color: var(--green-dark); font-size: 1.1rem; }
+    .cart-items { display: flex; flex-direction: column; gap: 10px; max-height: 310px; overflow: auto; }
+    .cart-item { border: 1px solid var(--line); border-radius: 10px; padding: 8px; }
+    .cart-item-name { font-weight: 700; font-size: .95rem; margin-bottom: 5px; }
+    .qty-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .qty-controls { display: inline-flex; align-items: center; gap: 6px; }
+    .qty-controls button {
+      width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line);
+      background: #f8faf8; cursor: pointer; font-weight: 800;
     }
 
-    .product h3 {
-      margin: 0 0 10px;
+    .summary {
+      margin-top: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      font-size: .95rem;
     }
-
-    .price {
-      font-weight: 700;
-      color: var(--green-700);
-      margin-bottom: 12px;
-    }
-
-    .product button,
-    .checkout button {
-      background: var(--green-700);
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .summary-total { font-weight: 800; color: var(--green-dark); }
 
     .checkout {
-      background: #fff;
-      border-radius: var(--radius);
+      margin: 18px 0 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
       box-shadow: var(--shadow);
       padding: 18px;
-      margin: 10px 0 34px;
     }
-
-    .checkout ul {
-      padding-left: 18px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    .total {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--green-900);
-      margin: 10px 0 14px;
-    }
-
-    .features {
+    .checkout h2 { margin-top: 0; color: var(--green-dark); }
+    .checkout-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-bottom: 34px;
+      grid-template-columns: 1fr 300px;
+      gap: 16px;
     }
-
-    .feature {
-      background: var(--green-100);
-      border-radius: 12px;
-      padding: 14px;
-      text-align: center;
-      font-size: 0.95rem;
+    .field { margin-bottom: 10px; }
+    .field label { display: block; margin-bottom: 5px; font-size: .9rem; color: var(--muted); }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      font: inherit;
+      background: #fff;
     }
 
     footer {
-      background: var(--green-900);
-      color: #e5e7eb;
       text-align: center;
-      padding: 18px;
-      margin-top: 24px;
-      font-size: 0.9rem;
+      color: var(--muted);
+      font-size: .9rem;
+      padding: 20px 0 30px;
     }
 
-    @media (max-width: 640px) {
-      .nav {
-        flex-direction: column;
-      }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .cart { position: static; }
+      .checkout-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav">
+    <div class="container topbar">
       <div class="brand">Arham Premium Foods</div>
-      <nav class="nav-links">
-        <a href="#products">Shop</a>
-        <a href="#features">Why Us</a>
-        <a href="#checkout">Checkout</a>
-        <span class="cart-pill">Cart: <span id="cartCount">0</span></span>
-      </nav>
+      <div class="top-actions">
+        <button class="btn btn-light" id="itemCount">0 Items</button>
+        <button class="btn btn-green" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'})">Go to Checkout</button>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
-      <h1>Fresh Organic Groceries Delivered to Your Door</h1>
-      <p>
-        Welcome to Arham Premium Foods — your trusted shop for pure, chemical-free,
-        and farm-fresh essentials. Start small with this launch-ready storefront and
-        grow it into a full e-commerce business.
-      </p>
-      <a class="cta" href="#products">Start Shopping</a>
+      <h1>Organic Grocery E-commerce Starter</h1>
+      <p>Clean and simple storefront template with categories, product cards, add-to-cart, quantity controls, and checkout layout. Built with only HTML, CSS, and JavaScript for easy editing.</p>
     </section>
 
-    <section id="products">
-      <h2 class="section-title">Featured Products</h2>
-      <div class="products" id="productList"></div>
+    <section class="layout">
+      <div>
+        <div class="toolbar" id="categoryFilters"></div>
+        <div class="products" id="productGrid"></div>
+      </div>
+
+      <aside class="cart">
+        <h2>Cart</h2>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="summary">
+          <div class="summary-row"><span>Subtotal</span><strong>$<span id="subtotal">0.00</span></strong></div>
+          <div class="summary-row"><span>Delivery</span><strong>$<span id="delivery">4.00</span></strong></div>
+          <div class="summary-row summary-total"><span>Total</span><span>$<span id="total">4.00</span></span></div>
+        </div>
+      </aside>
     </section>
 
-    <section id="checkout" class="checkout">
-      <h2 class="section-title">Your Cart</h2>
-      <ul id="cartItems">
-        <li>No items added yet.</li>
-      </ul>
-      <div class="total">Total: $<span id="cartTotal">0.00</span></div>
-      <button id="checkoutBtn">Proceed to Checkout</button>
-    </section>
+    <section class="checkout" id="checkout">
+      <h2>Checkout</h2>
+      <div class="checkout-grid">
+        <form>
+          <div class="field"><label>Full Name</label><input type="text" placeholder="Arham Customer" /></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+          <div class="field"><label>Phone</label><input type="tel" placeholder="+1 555 000 1111" /></div>
+          <div class="field"><label>Address</label><textarea rows="3" placeholder="Street, city, ZIP"></textarea></div>
+          <div class="field"><label>Delivery Slot</label><select><option>Morning (8am - 11am)</option><option>Afternoon (12pm - 4pm)</option><option>Evening (5pm - 8pm)</option></select></div>
+          <button type="button" class="btn btn-green">Place Order (Demo)</button>
+        </form>
 
-    <section id="features">
-      <h2 class="section-title">Why Customers Choose Us</h2>
-      <div class="features">
-        <div class="feature">100% Organic & Quality Checked</div>
-        <div class="feature">Fast Local Delivery</div>
-        <div class="feature">Secure Cashless Payments</div>
-        <div class="feature">Trusted Family-Owned Brand</div>
+        <div>
+          <h3 style="margin-top:0;color:var(--green-dark)">Order Summary</h3>
+          <div id="orderSummary"></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    © 2026 Arham Premium Foods • Contact: +1 (555) 123-4567 • hello@arhampremiumfoods.com
-  </footer>
+  <footer>© 2026 Arham Premium Foods • Organic • Fresh • Trusted</footer>
 
   <script>
     const products = [
-      { id: 1, name: 'Organic Honey', price: 10 },
-      { id: 2, name: 'Dry Fruits Mix', price: 15 },
-      { id: 3, name: 'Herbal Green Tea', price: 8 },
-      { id: 4, name: 'Cold-Pressed Mustard Oil', price: 12 },
-      { id: 5, name: 'Millet Flour', price: 7 },
-      { id: 6, name: 'Organic Turmeric Powder', price: 6 }
+      { id: 1, name: 'Organic Honey', category: 'Pantry', price: 10.0, image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80' },
+      { id: 2, name: 'Dry Fruits Mix', category: 'Snacks', price: 15.0, image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=600&q=80' },
+      { id: 3, name: 'Herbal Green Tea', category: 'Beverages', price: 8.0, image: 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=600&q=80' },
+      { id: 4, name: 'Cold-Pressed Mustard Oil', category: 'Pantry', price: 12.0, image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80' },
+      { id: 5, name: 'Millet Flour', category: 'Staples', price: 7.0, image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80' },
+      { id: 6, name: 'Organic Turmeric Powder', category: 'Spices', price: 6.0, image: 'https://images.unsplash.com/photo-1615485925934-7f46f50f8a2e?auto=format&fit=crop&w=600&q=80' },
+      { id: 7, name: 'Brown Basmati Rice', category: 'Staples', price: 11.0, image: 'https://images.unsplash.com/photo-1536305030015-1b5e2f32177a?auto=format&fit=crop&w=600&q=80' },
+      { id: 8, name: 'A2 Cow Ghee', category: 'Dairy', price: 18.0, image: 'https://images.unsplash.com/photo-1563379091339-03246963d96a?auto=format&fit=crop&w=600&q=80' }
     ];
 
-    const cart = [];
+    let selectedCategory = 'All';
+    const cart = {};
+    const deliveryFee = 4;
+
+    function getCategories() {
+      return ['All', ...new Set(products.map((p) => p.category))];
+    }
+
+    function renderCategories() {
+      const filter = document.getElementById('categoryFilters');
+      filter.innerHTML = getCategories().map((category) => `
+        <button class="chip ${selectedCategory === category ? 'active' : ''}" onclick="setCategory('${category}')">${category}</button>
+      `).join('');
+    }
+
+    function setCategory(category) {
+      selectedCategory = category;
+      renderCategories();
+      renderProducts();
+    }
+
+    function filteredProducts() {
+      if (selectedCategory === 'All') return products;
+      return products.filter((p) => p.category === selectedCategory);
+    }
 
     function renderProducts() {
-      const list = document.getElementById('productList');
-      list.innerHTML = products
-        .map((p) => `
-          <article class="product">
-            <h3>${p.name}</h3>
-            <div class="price">$${p.price.toFixed(2)}</div>
-            <button onclick="addToCart(${p.id})">Add to Cart</button>
-          </article>
-        `)
-        .join('');
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = filteredProducts().map((product) => `
+        <article class="card">
+          <img src="${product.image}" alt="${product.name}" loading="lazy" />
+          <div class="card-body">
+            <h3>${product.name}</h3>
+            <div class="meta">${product.category}</div>
+            <div class="price">$${product.price.toFixed(2)}</div>
+            <button class="btn btn-green" onclick="addToCart(${product.id})">Add to Cart</button>
+          </div>
+        </article>
+      `).join('');
     }
 
-    function addToCart(productId) {
-      const product = products.find((p) => p.id === productId);
-      cart.push(product);
-      updateCart();
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
     }
 
-    function updateCart() {
+    function updateQty(id, change) {
+      if (!cart[id]) return;
+      cart[id] += change;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    }
+
+    function renderCart() {
       const cartItems = document.getElementById('cartItems');
-      const cartCount = document.getElementById('cartCount');
-      const cartTotal = document.getElementById('cartTotal');
+      const summary = document.getElementById('orderSummary');
+      const countEl = document.getElementById('itemCount');
 
-      if (cart.length === 0) {
-        cartItems.innerHTML = '<li>No items added yet.</li>';
+      const entries = Object.entries(cart);
+      if (entries.length === 0) {
+        cartItems.innerHTML = '<p style="margin:6px 0;color:var(--muted)">Your cart is empty.</p>';
+        summary.innerHTML = '<p style="margin:6px 0;color:var(--muted)">No items selected.</p>';
       } else {
-        cartItems.innerHTML = cart.map((item) => `<li>${item.name} — $${item.price.toFixed(2)}</li>`).join('');
+        const rows = entries.map(([id, qty]) => {
+          const product = products.find((p) => p.id === Number(id));
+          return { ...product, qty };
+        });
+
+        cartItems.innerHTML = rows.map((item) => `
+          <div class="cart-item">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="qty-row">
+              <div class="qty-controls">
+                <button onclick="updateQty(${item.id}, -1)">−</button>
+                <strong>${item.qty}</strong>
+                <button onclick="updateQty(${item.id}, 1)">+</button>
+              </div>
+              <strong>$${(item.price * item.qty).toFixed(2)}</strong>
+            </div>
+          </div>
+        `).join('');
+
+        summary.innerHTML = rows.map((item) => `
+          <div class="summary-row"><span>${item.name} × ${item.qty}</span><strong>$${(item.price * item.qty).toFixed(2)}</strong></div>
+        `).join('');
       }
 
-      cartCount.textContent = cart.length;
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      cartTotal.textContent = total.toFixed(2);
+      const itemCount = entries.reduce((sum, [, qty]) => sum + qty, 0);
+      const subtotal = entries.reduce((sum, [id, qty]) => {
+        const product = products.find((p) => p.id === Number(id));
+        return sum + product.price * qty;
+      }, 0);
+      const total = subtotal + deliveryFee;
+
+      countEl.textContent = `${itemCount} Item${itemCount === 1 ? '' : 's'}`;
+      document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+      document.getElementById('delivery').textContent = itemCount > 0 ? deliveryFee.toFixed(2) : '0.00';
+      document.getElementById('total').textContent = (itemCount > 0 ? total : 0).toFixed(2);
     }
 
-    document.getElementById('checkoutBtn').addEventListener('click', () => {
-      if (cart.length === 0) {
-        alert('Your cart is empty. Please add products before checkout.');
-        return;
-      }
-
-      alert('Thanks for your order! Next step: connect this button to Razorpay/Stripe and order APIs.');
-    });
-
+    renderCategories();
     renderProducts();
+    renderCart();
   </script>
 </body>
 </html>

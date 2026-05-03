@@ -1,20 +1,23 @@
-# Arham Premium Foods
+# Arham Premium Foods — E-commerce Starter
 
-A starter e-commerce storefront for an organic food shop.
+Simple front-end starter for an organic food store using only HTML, CSS, and JavaScript.
 
-## What's included
-- Responsive landing page
-- Product grid with featured organic items
-- Add-to-cart functionality
-- Live cart count and total
-- Basic checkout flow placeholder for payment integration
+## Features
+- Modern organic store design (green, beige, white)
+- Product grid with product images
+- Product category filters
+- Add-to-cart buttons
+- Cart sidebar
+- Quantity controls (+ / -)
+- Checkout page layout
+- Order summary panel
+- Responsive mobile-first behavior
+- Easy-to-edit single-file structure
 
-## Run locally
-Open `index.html` in your browser.
+## How to run
+Open `index.html` in any browser.
 
-## Next steps to launch
-1. Add a backend (Node.js, Django, Laravel, etc.)
-2. Store products and orders in a database
-3. Add payment gateway integration (Stripe/Razorpay/PayPal)
-4. Add customer login, address, and order tracking
-5. Deploy on Vercel/Netlify (frontend) and Render/Railway/AWS (backend)
+## Customize quickly
+- Edit products in the `products` array inside `index.html`.
+- Change colors in CSS `:root` variables.
+- Modify checkout fields in the `Checkout` section.
